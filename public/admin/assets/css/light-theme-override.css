@@ -1,0 +1,86 @@
+/* ABSOLUTE FINAL LIGHT THEME OVERRIDE - LOADS LAST */
+
+/* Kill all dark backgrounds on tables */
+body .table,
+body table.table,
+body .card .table,
+body .card-body .table,
+body .table-responsive .table,
+body .content-wrapper .table,
+body * .table {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+}
+
+/* Force all table rows to white background */
+body .table tbody tr,
+body table.table tbody tr,
+body .table tbody tr td,
+body table tbody tr td {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #212529 !important;
+}
+
+/* HOVER STATE - ABSOLUTE MAXIMUM SPECIFICITY */
+body .table tbody tr:hover,
+body table.table tbody tr:hover,
+body .table-hover tbody tr:hover,
+body .table.table-hover tbody tr:hover,
+body .card .table tbody tr:hover,
+body .card-body .table tbody tr:hover,
+body div table tbody tr:hover,
+body * .table tbody tr:hover {
+    background-color: #e9ecef !important;
+    background: #e9ecef !important;
+}
+
+body .table tbody tr:hover td,
+body table.table tbody tr:hover td,
+body .table-hover tbody tr:hover td,
+body .card .table tbody tr:hover td,
+body .card-body .table tbody tr:hover td,
+body div table tbody tr:hover td,
+body * .table tbody tr:hover td,
+body .table tbody tr:hover th,
+body table tbody tr:hover th {
+    background-color: #e9ecef !important;
+    background: #e9ecef !important;
+    color: #212529 !important;
+}
+
+/* Force all text in tables to be dark */
+body .table td,
+body .table th,
+body table td,
+body table th,
+body .table td *:not(.badge),
+body .table th *:not(.badge),
+body table td *:not(.badge),
+body table th *:not(.badge) {
+    color: #212529 !important;
+}
+
+/* Ensure text stays dark on hover */
+body .table tbody tr:hover td,
+body .table tbody tr:hover td *:not(.badge),
+body .table tbody tr:hover th,
+body .table tbody tr:hover th *:not(.badge),
+body table tbody tr:hover td,
+body table tbody tr:hover td *:not(.badge) {
+    color: #212529 !important;
+}
+
+/* Force badges to keep their colors */
+.table .badge,
+table .badge {
+    color: #fff !important;
+}
+
+/* Kill any transitions that might interfere */
+.table tbody tr,
+.table tbody tr td,
+table tbody tr,
+table tbody tr td {
+    transition: none !important;
+}
