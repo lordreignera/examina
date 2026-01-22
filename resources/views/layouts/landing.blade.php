@@ -401,7 +401,7 @@
         }
         
         // Add to cart function
-        function addToCart(testId, testName, price) {
+        function addToCart(testId, testName, price, branchId, branchName) {
             const cart = JSON.parse(localStorage.getItem('cart') || '[]');
             
             // Check if already in cart
@@ -413,7 +413,9 @@
             cart.push({
                 id: testId,
                 name: testName,
-                price: parseFloat(price)
+                price: parseFloat(price),
+                branchId: branchId,
+                branchName: branchName || 'Any Branch'
             });
             
             localStorage.setItem('cart', JSON.stringify(cart));

@@ -103,7 +103,7 @@
                                         <i class="bi bi-droplet"></i> {{ $category->specimen->specimen_name }}
                                     </div>
                                     <button class="btn btn-add-cart btn-sm" 
-                                            onclick="addToCart({{ $category->id }}, '{{ addslashes($category->category_name) }}', {{ $category->price }})">
+                                            onclick="addToCart({{ $category->id }}, '{{ addslashes($category->category_name) }}', {{ $category->price }}, {{ $selectedBranchId ?? 'null' }}, '{{ $selectedBranchId ? addslashes($branches->find($selectedBranchId)->branch_name) : '' }}')">
                                         <i class="bi bi-cart-plus"></i> Add
                                     </button>
                                 </div>
@@ -141,7 +141,7 @@
                                                     @endif
                                                 </div>
                                                 <button class="btn btn-add-cart btn-sm" 
-                                                        onclick="addToCart({{ $category->id }}, '{{ addslashes($category->category_name) }}', {{ $category->price }})">
+                                                        onclick="addToCart({{ $category->id }}, '{{ addslashes($category->category_name) }}', {{ $category->price }}, {{ $selectedBranchId ?? 'null' }}, '{{ $selectedBranchId ? addslashes($branches->find($selectedBranchId)->branch_name) : '' }}')">
                                                     <i class="bi bi-cart-plus"></i> Add
                                                 </button>
                                             </div>

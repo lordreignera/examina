@@ -46,9 +46,10 @@
                         <span>Total Items:</span>
                         <strong id="total-items">0</strong>
                     </div>
+                    <div id="branch-summary" class="mb-3"></div>
                     <div class="d-flex justify-content-between mb-3">
                         <span class="h5">Total Amount:</span>
-                        <strong class="h5 text-success" id="total-amount">$0.00</strong>
+                        <strong class="h5 text-success" id="total-amount">UGX 0</strong>
                     </div>
                     <hr>
                     
@@ -116,10 +117,11 @@
         cart.forEach((item, index) => {
             html += `
                 <div class="list-group-item">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
                             <h6 class="mb-1">${item.name}</h6>
-                            <p class="mb-0 text-success fw-bold">$${parseFloat(item.price).toFixed(2)}</p>
+                            <p class="mb-1 text-success fw-bold">UGX ${parseFloat(item.price).toFixed(0)}</p>
+                            ${item.branchName ? `<small class="text-muted"><i class="bi bi-building"></i> Branch: ${item.branchName}</small>` : ''}
                         </div>
                         <button class="btn btn-sm btn-danger" onclick="removeFromCart(${index})">
                             <i class="bi bi-trash"></i> Remove
@@ -151,7 +153,38 @@
         const totalAmount = cart.reduce((sum, item) => sum + parseFloat(item.price), 0);
         
         document.getElementById('total-items').textContent = totalItems;
-        document.getElementById('total-amount').textContent = '$' + totalAmount.toFixed(2);
+        document.getElementById('total-amount').textContent = 'UGX ' + totalAmount.toFixed(0);
+        
+        // Group items by branch and display
+        const branchGroups = {};
+        cart.forEach(item => {
+            const branchName = item.branchName || 'Any Branch';
+            if (!branchGroups[branchName]) {
+                branchGroups[branchName] = {
+                    count: 0,
+                    amount: 0
+                };
+            }
+            branchGroups[branchName].count++;
+            branchGroups[branchName].amount += parseFloat(item.price);
+        });
+        
+        // Display branch summary
+        let branchSummaryHtml = '';
+        if (Object.keys(branchGroups).length > 0) {
+            branchSummaryHtml = '<div class="border rounded p-2 bg-light">';
+            branchSummaryHtml += '<small class="text-muted fw-bold">Tests by Branch:</small>';
+            for (const [branch, data] of Object.entries(branchGroups)) {
+                branchSummaryHtml += `
+                    <div class="d-flex justify-content-between align-items-center mt-2 small">
+                        <span><i class="bi bi-building"></i> ${branch}</span>
+                        <span class="badge bg-primary">${data.count} test(s) - UGX ${data.amount.toFixed(0)}</span>
+                    </div>
+                `;
+            }
+            branchSummaryHtml += '</div>';
+        }
+        document.getElementById('branch-summary').innerHTML = branchSummaryHtml;
     }
     
     // Handle form submission
